@@ -130,6 +130,15 @@ target_link_libraries(publisher ${catkin_LIBRARIES})
 add_executable(subscriber src/subscriber.cpp)
 target_link_libraries(subscriber ${catkin_LIBRARIES})
 
+add_executable(service_server src/service_server.cpp)
+target_link_libraries(service_server ${catkin_LIBRARIES})
+
+add_executable(service_client src/service_client.cpp)
+target_link_libraries(service_client ${catkin_LIBRARIES})
+
+add_dependencies(service_server bme_ros_tutorials_generate_messages_cpp)
+add_dependencies(service_client bme_ros_tutorials_generate_messages_cpp)
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
