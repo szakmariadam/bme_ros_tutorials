@@ -56,11 +56,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -70,10 +69,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   actionlib_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -130,6 +129,15 @@ target_link_libraries(publisher ${catkin_LIBRARIES})
 
 add_executable(subscriber src/subscriber.cpp)
 target_link_libraries(subscriber ${catkin_LIBRARIES})
+
+add_executable(service_server src/service_server.cpp)
+target_link_libraries(service_server ${catkin_LIBRARIES})
+
+add_executable(service_client src/service_client.cpp)
+target_link_libraries(service_client ${catkin_LIBRARIES})
+
+add_dependencies(service_server bme_ros_tutorials_generate_messages_cpp)
+add_dependencies(service_client bme_ros_tutorials_generate_messages_cpp)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
